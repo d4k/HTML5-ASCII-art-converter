@@ -8,11 +8,12 @@ var syncScroll = function(th, other)
     other.scrollLeft = th.scrollLeft;
 };
 
+//Load file from input lield and input area.
 input.getField().addEventListener('change', input.loadFromField);
+input.getArea().addEventListener('dragover', input.areaDragOverHandler, false);
+input.getArea().addEventListener('drop', input.loadFromArea, false);
 
-converter.getCreateButton().addEventListener('click', converter.convert);
-converter.getFullScreenButton().addEventListener('click', converter.fullScreen);
-
+// Sync scroll for preview and source images.
 document.getElementById("preview-source").addEventListener('scroll', function() {
     syncScroll(this, document.getElementById("preview-result"));
 });
@@ -20,5 +21,5 @@ document.getElementById("preview-result").addEventListener('scroll', function() 
     syncScroll(this, document.getElementById("preview-source"));
 });
 
-input.getArea().addEventListener('dragover', input.areaDragOverHandler, false);
-input.getArea().addEventListener('drop', input.loadFromArea, false);
+converter.getCreateButton().addEventListener('click', converter.convert);
+converter.getFullScreenButton().addEventListener('click', converter.fullScreen);
